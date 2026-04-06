@@ -1,190 +1,153 @@
-# **CS4412 Data Mining Project**
+# CS 4412 Data Mining Project
+## Pattern Discovery in the Global Terrorism Database
 
-Pattern Discovery in the Global Terrorism Database
+### Author
+Daniel Berezovsky  
+CS 4412 – Data Mining  
 
-Author
+---
 
-Daniel Berezovsky
+## Project Overview
 
-CS 4412 Data Mining
+This project analyzes patterns in the Global Terrorism Database (GTD) using data mining techniques with a focus on **pattern discovery** rather than prediction. The goal is to identify meaningful structure in terrorist incidents by combining exploratory data analysis, clustering, dimensionality reduction, and interpretable rule-based explanation.
 
-Kennesaw State University
+To improve consistency and focus on modern terrorism trends, the analysis is restricted to incidents from **2000 onward**.
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+---
 
-### Project Overview
+## Discovery Questions
 
-This project explores patterns and relationships within the Global Terrorism Database (GTD) using data mining techniques. The goal is to identify meaningful structures and insights in historical terrorism data through exploratory analysis and unsupervised learning methods.
+1. Are there natural clusters of terrorist incidents based on attack characteristics?
+2. How do geographic and temporal context affect the clustering structure?
+3. What additional structure appears when a density-based clustering method is used?
 
-Rather than focusing on prediction accuracy, the project emphasizes pattern discovery, clustering, and exploratory visualization to better understand global terrorism trends.
+---
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+## Dataset
 
-### Dataset
+**Dataset:** Global Terrorism Database (GTD)  
+**Source:** Kaggle / START-UMD Global Terrorism Database  
 
-Dataset: Global Terrorism Database (GTD)
+The GTD contains worldwide terrorist incident records with attributes such as:
 
-Source: https://www.kaggle.com/datasets
+- year of incident
+- country and region
+- attack type
+- target type
+- weapon type
+- number killed
+- number wounded
 
-The Global Terrorism Database is a comprehensive open-source dataset containing information on terrorist events around the world.
+For this project, the most relevant features include attack type, target type, weapon type, region, year, and a derived casualty measure.
 
-Dataset Characteristics
+---
 
-###### • Events from 1970–present
+## Techniques Used
 
-###### • Includes information such as:
+### Exploratory Data Analysis
+- attacks per year
+- top countries by incident count
+- attack type distributions
+- weapon type distributions
+- casualty distributions
+- severity comparisons across attack types
 
-o Year and location of attack
+### Clustering
+- **K-Means** for broad segmentation of incidents
+- **DBSCAN** for density-based grouping and detection of unusual cases
 
-o Attack type
+### Dimensionality Reduction
+- **PCA** for lower-dimensional visualization and preprocessing for DBSCAN
 
-o Weapon type
+### Evaluation
+- **Elbow Method**
+- **Silhouette Score**
 
-o Target category
+### Interpretation Enhancement
+- **Decision Tree** used to explain cluster structure with interpretable rules
 
-o Number of casualties
+---
 
-o Terrorist group involved
+## Key M3 Improvements
 
-The dataset contains thousands of recorded incidents, making it suitable for large-scale exploratory analysis.
+This version expands the earlier clustering work by:
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+- adding silhouette score analysis to support cluster selection
+- using one-hot encoding for categorical features
+- incorporating **region** and **year** into the feature set
+- replacing a simple 2D scatter view with **PCA-based visualization**
+- adding **DBSCAN** as a second clustering method
+- using a **decision tree** to explain how clusters are distinguished
 
-### Discovery Questions
+---
 
-This project investigates the following discovery-oriented questions:
+## Results Summary
 
-1.Are there natural clusters of terrorist incidents based on attack characteristics?
+- K-Means identifies **three broad clusters** of terrorist incidents
+- silhouette scoring supports the choice of **k = 3**
+- PCA provides a more meaningful visualization of cluster separation
+- DBSCAN identifies dense regions and noise points, highlighting less typical incidents
+- decision tree rules make cluster membership easier to interpret
 
-2.Which attack types and weapon types frequently occur together?
+Together, these methods suggest that terrorist incidents are not homogeneous. They differ in terms of severity, tactics, weapons, targets, regional context, and time period.
 
-3.What temporal or geographic patterns exist within the dataset?
+---
 
-These questions aim to uncover underlying structures within the data rather than predicting future events.
+## Project Structure
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-### Techniques Used
-
-The following data mining techniques are applied:
-
-Exploratory Data Analysis (EDA)
-
-•Distribution analysis
-
-•Temporal trends
-
-•Geographic exploration
-
-•Feature relationships
-
-Clustering
-
-•K-Means Clustering
-
-•Identification of natural groupings in attack patterns
-
-Visualization
-
-•Matplotlib
-
-•Seaborn
-
-•Scatter plots and distribution charts
-
-These techniques help reveal patterns, anomalies, and relationships within the data.
-
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-Project Structure
-
+```text
 cs4412-project
-
 │
-
-├── data
-
-│   └── dataset files
-
-│
-
-├── notebooks
-
-│   └── Jupyter notebooks for analysis
-
-│
-
-├── src
-
-│   └── Python scripts
-
-│
-
-├── docs
-
-│   └── project proposal and documentation
-
-│
-
+├── data/
+│   └── dataset file or access instructions
+├── notebooks/
+│   └── gtd_m3_analysis.ipynb
+├── docs/
+│   └── M3_Final_Expanded_Report_v2.pdf
 └── README.md
+```
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+---
 
-Tools \& Libraries
+## How to Run
 
-Python libraries used in this project include:
+1. Install dependencies:
 
-• pandas
-
-• numpy
-
-• scikit-learn
-
-• matplotlib
-
-• seaborn
-
-• jupyter notebook
-
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-How to Run the Project
-
-1. Clone the repository:
-
-git clone https://github.com/yourusername/cs4412-project.git
-
-2\. Navigate into the folder:
-
-cd cs4412-project
-
-3\. Install dependencies:
-
+```bash
 pip install pandas numpy matplotlib seaborn scikit-learn
+```
 
-4\. Launch Jupyter Notebook:
+2. Launch Jupyter Notebook:
 
+```bash
 jupyter notebook
+```
 
-5\. Open the notebook inside the notebooks/ folder and run all cells.
+3. Open the notebook in the `notebooks/` folder and run all cells.
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+4. Make sure the GTD CSV file is in the expected location before running the notebook.
 
-Future Work
+---
 
-Planned future enhancements include:
+## Reproducibility Notes
 
-• Association rule mining - Apriori (or FP-Growth)
+- The analysis uses fixed random seeds where relevant for reproducibility.
+- Some steps such as silhouette scoring and DBSCAN use sampling to keep runtime manageable on a large dataset.
+- The notebook is designed to run end-to-end and reproduce the main results shown in the report.
 
-• Additional clustering algorithms (DBSCAN or hierarchical clustering)
+---
 
-• Dimensionality reduction techniques such as PCA
+## M4 Plan
 
-• More advanced visualization of discovered patterns
+Future polish will focus on:
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+- refining cluster names and interpretations
+- improving visual presentation
+- strengthening the limitations discussion
+- tightening the final narrative of findings
 
-License
+---
 
-This project is created for educational purposes as part of the CS4412 Data Mining at Kennesaw State University.
+## Notes
 
+This project was created for academic purposes as part of **CS 4412 Data Mining**.
