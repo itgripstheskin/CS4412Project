@@ -87,9 +87,10 @@ These labels are based on dominant features in each cluster and help translate n
 CS4412Project
 │
 ├── notebooks/
-│   └── gtd_m3_analysis.ipynb
+│   └── gtd_m4_polished_final.ipynb
 ├── docs/
-│   └── Data Mining M3 Analysis Summary.pdf
+│   └── CS4412_Daniel_Berezovsky_M4_Final_Report.pdf
+│   └── GTD_Project_Presentation_M4_Daniel_Berezovsky.pptx
 └── README.md
 ```
 
