@@ -1,5 +1,5 @@
 # CS 4412 Data Mining Project
-## Pattern Discovery in the Global Terrorism Database
+## Pattern Discovery in the Global Terrorism Database (M4 Final)
 
 ### Author
 Daniel Berezovsky  
@@ -9,101 +9,87 @@ CS 4412 – Data Mining
 
 ## Project Overview
 
-This project analyzes patterns in the Global Terrorism Database (GTD) using data mining techniques with a focus on **pattern discovery** rather than prediction. The goal is to identify meaningful structure in terrorist incidents by combining exploratory data analysis, clustering, dimensionality reduction, and interpretable rule-based explanation.
+This project analyzes patterns in the Global Terrorism Database (GTD) using data mining techniques with a focus on **pattern discovery rather than prediction**. The goal is to identify meaningful structure in terrorist incidents through clustering, dimensionality reduction, and interpretable analysis.
 
-To improve consistency and focus on modern terrorism trends, the analysis is restricted to incidents from **2000 onward**.
+To improve consistency and focus on modern terrorism trends, the dataset is restricted to incidents from **2000 onward**.
 
 ---
 
 ## Discovery Questions
 
-1. Are there natural clusters of terrorist incidents based on attack characteristics?
-2. How do geographic and temporal context affect the clustering structure?
-3. What additional structure appears when a density-based clustering method is used?
+1. Are there natural clusters of terrorist incidents based on attack characteristics?  
+2. How do geographic and temporal context affect the clustering structure?  
+3. What additional structure appears when a density-based clustering method is used?  
 
 ---
 
 ## Dataset
 
 **Dataset:** Global Terrorism Database (GTD)  
-**Source:** Kaggle / START-UMD Global Terrorism Database  
+**Source:** START / Kaggle  
 
-The GTD contains worldwide terrorist incident records with attributes such as:
-
-- year of incident
-- country and region
-- attack type
-- target type
-- weapon type
-- number killed
-- number wounded
-
-For this project, the most relevant features include attack type, target type, weapon type, region, year, and a derived casualty measure.
+The dataset includes:
+- year of incident  
+- country and region  
+- attack type  
+- target type  
+- weapon type  
+- number killed  
+- number wounded  
 
 ---
 
 ## Techniques Used
 
 ### Exploratory Data Analysis
-- attacks per year
-- top countries by incident count
-- attack type distributions
-- weapon type distributions
-- casualty distributions
-- severity comparisons across attack types
+- trends over time  
+- geographic concentration  
+- attack and weapon distributions  
+- casualty severity patterns  
 
 ### Clustering
-- **K-Means** for broad segmentation of incidents
-- **DBSCAN** for density-based grouping and detection of unusual cases
+- **K-Means** (primary clustering method)  
+- **DBSCAN** (density-based clustering for alternative structure)  
 
 ### Dimensionality Reduction
-- **PCA** for lower-dimensional visualization and preprocessing for DBSCAN
+- **PCA** (used for visualization and preprocessing for DBSCAN)  
 
 ### Evaluation
-- **Elbow Method**
-- **Silhouette Score**
+- Elbow Method  
+- Silhouette Score  
 
 ### Interpretation Enhancement
-- **Decision Tree** used to explain cluster structure with interpretable rules
+- **Decision Tree** used to explain cluster structure  
 
 ---
 
-## Key M3 Improvements
+## Key Findings
 
-This version expands the earlier clustering work by:
+- K-Means identifies **three interpretable clusters**
+- Silhouette scores do **not peak at k = 3**, but k = 3 is chosen for interpretability
+- PCA visualization provides a **rough projection** of clusters (low variance captured)
+- DBSCAN does **not produce clean clusters**, instead fragmenting the data into many small groups
+- Decision tree reveals which features differentiate clusters
 
-- adding silhouette score analysis to support cluster selection
-- using one-hot encoding for categorical features
-- incorporating **region** and **year** into the feature set
-- replacing a simple 2D scatter view with **PCA-based visualization**
-- adding **DBSCAN** as a second clustering method
-- using a **decision tree** to explain how clusters are distinguished
+### Named Clusters
 
----
+- **Cluster 0:** Bombing/Explosive Attacks in Middle East & North Africa  
+- **Cluster 1:** Unarmed / Military-Targeted Incidents  
+- **Cluster 2:** Armed Assaults in South Asia  
 
-## Results Summary
-
-- K-Means identifies **three broad clusters** of terrorist incidents
-- silhouette scoring supports the choice of **k = 3**
-- PCA provides a more meaningful visualization of cluster separation
-- DBSCAN identifies dense regions and noise points, highlighting less typical incidents
-- decision tree rules make cluster membership easier to interpret
-
-Together, these methods suggest that terrorist incidents are not homogeneous. They differ in terms of severity, tactics, weapons, targets, regional context, and time period.
+These labels are based on dominant features in each cluster and help translate numerical clusters into meaningful real-world patterns.
 
 ---
 
 ## Project Structure
 
-```text
-cs4412-project
+```
+CS4412Project
 │
-├── data/
-│   └── dataset file or access instructions
 ├── notebooks/
 │   └── gtd_m3_analysis.ipynb
 ├── docs/
-│   └── M3_Final_Expanded_Report_v2.pdf
+│   └── Data Mining M3 Analysis Summary.pdf
 └── README.md
 ```
 
@@ -111,43 +97,59 @@ cs4412-project
 
 ## How to Run
 
-1. Install dependencies:
-
-```bash
+### 1. Install dependencies
+```
 pip install pandas numpy matplotlib seaborn scikit-learn
 ```
 
-2. Launch Jupyter Notebook:
-
-```bash
+### 2. Launch Jupyter
+```
 jupyter notebook
 ```
 
-3. Open the notebook in the `notebooks/` folder and run all cells.
+### 3. Open the notebook and run all cells
 
-4. Make sure the GTD CSV file is in the expected location before running the notebook.
+---
+
+## Dataset Setup (Important)
+
+Place the dataset file:
+
+```
+globalterrorismdb_0718dist.csv
+```
+
+in the **same directory as the notebook** before running.
 
 ---
 
 ## Reproducibility Notes
 
-- The analysis uses fixed random seeds where relevant for reproducibility.
-- Some steps such as silhouette scoring and DBSCAN use sampling to keep runtime manageable on a large dataset.
-- The notebook is designed to run end-to-end and reproduce the main results shown in the report.
+- Random seeds are fixed where applicable  
+- Sampling is used for large computations (silhouette + DBSCAN)  
+- Notebook runs end-to-end and reproduces all results  
 
 ---
 
-## M4 Plan
+## Limitations
 
-Future polish will focus on:
+- High-dimensional categorical data leads to sparse feature space  
+- PCA visualization captures limited variance (~10% in 2D)  
+- DBSCAN results are sensitive to parameter choice  
+- Clustering results depend on feature engineering decisions  
 
-- refining cluster names and interpretations
-- improving visual presentation
-- strengthening the limitations discussion
-- tightening the final narrative of findings
+---
+
+## M4 Improvements
+
+- Corrected silhouette interpretation  
+- Added cluster naming  
+- Improved PCA and DBSCAN explanations  
+- Added decision tree feature labeling  
+- Enhanced visualization clarity (optional version)  
 
 ---
 
 ## Notes
 
-This project was created for academic purposes as part of **CS 4412 Data Mining**.
+This project was completed as part of **CS 4412 Data Mining**.
