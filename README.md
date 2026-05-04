@@ -85,7 +85,8 @@ These labels are based on dominant features in each cluster and help translate n
 
 ```
 CS4412Project
-│
+│── data/
+│   └──globalterrorismdb_0718dist.csv.zip
 ├── notebooks/
 │   └── gtd_m4_polished_final.ipynb
 ├── docs/
